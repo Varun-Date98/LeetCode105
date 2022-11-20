@@ -1,3 +1,5 @@
+from typing import List
+
 '''
 1. Two Sum | Difficulty: Easy
 
@@ -15,7 +17,7 @@ Without any constraints this problem is trivial and can be easily sloved in many
 If interviewer asks what happens if I give you a sorted array, how better can you solve this then use the two pointer approach
 '''
 
-def twoSumTwoPointers(array, target):
+def twoSumTwoPointers(array: List[int], target: int) -> List[int]:
     array.sort()
     left, right = 0, len(array) - 1
 
@@ -27,13 +29,19 @@ def twoSumTwoPointers(array, target):
         elif currrentSum > target:
             right -= 1
         else:
-            return (left, right)
+            return [left, right]
+    
+    # If no elements found that sum up to target
+    return [-1, -1]
 
-def twoSumSet(array, target):
+def twoSumSet(array: List[int], target: int) -> List[int]:
     seen = {}
 
     for i, num in enumerate(array):
         if target - num in seen:
-            return (seen[target - num], i)
+            return [seen[target - num], i]
         
         seen[num] = i
+
+    # If no elements found that sum up to target
+    return [-1, -1]
